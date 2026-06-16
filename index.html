@@ -112,13 +112,6 @@
     background-color:var(--void);
     transform:scale(1.04);transform-origin:center top;
   }
-  /* animiertes Hintergrundvideo (über dem Standbild, unter dem Verlauf) */
-  .bgvid{
-    position:absolute;inset:0;width:100%;height:100%;
-    object-fit:cover;object-position:center top;
-    opacity:0;transition:opacity .7s ease;pointer-events:none;
-  }
-  .bgvid.playing{opacity:1}
   /* sanfter Verlauf, damit Inhalt unten lesbar bleibt */
   .bg::after{
     content:"";position:absolute;inset:0;
@@ -248,7 +241,7 @@
   .card .meta{
     font-style:italic;font-size:15px;color:var(--rose-deep);margin-top:3px;
   }
-  .card .cardimg{
+  .card .cardimg, .card .cardvid{
     display:block;width:100%;height:180px;object-fit:cover;object-position:center;
     border-radius:12px;margin-top:13px;background:var(--field);
     border:1px solid var(--card-line);
@@ -318,9 +311,7 @@
 </head>
 <body>
 
-<div class="bg" aria-hidden="true">
-  <video class="bgvid" id="bgVideo" muted loop playsinline preload="none"></video>
-</div>
+<div class="bg"></div>
 
 <button class="themebtn" id="themeBtn" type="button" aria-label="Tag- oder Nacht-Ansicht wechseln"></button>
 
@@ -355,7 +346,7 @@
   Ich freue mich auf euch<br>
   Fragen? Findet ihr oben unter „Programm“<br>
   <span class="names">Eure Elke</span>
-  <div class="credits">Strandfotos: JeanbaptisteM (Flickr) · Pierre Bona &amp; Wikimedia Commons · CC BY</div>
+  <div class="credits">Einige Strandfotos: JeanbaptisteM (Flickr) · Pierre Bona &amp; Wikimedia Commons · CC BY</div>
 </footer>
 
 <script>
@@ -363,11 +354,11 @@ const ORT_MAPS = "https://maps.app.goo.gl/9VHoyo2LRmnLKrsNA";
 const M = q => "https://maps.google.com/?q="+encodeURIComponent(q);
 
 const DATEN = [
-  { kategorie:"Programm", name:"La Grande Fête", info:"Samstag, 4. Juli 2026 · 19.00 Uhr",
+  { kategorie:"Programm", name:"La Grande Fête", info:"Samstag, 4. Juli 2026 · 19.00 Uhr", video:"assets/event-grande-fete.mp4",
     text:"Der große Abend im Casa Indigo Mare.",
     tip:"<b>Dresscode:</b> Summer Elegance – fließende Kleider, Leinenhemd oder leichter Anzug. Festlich, aber luftig.<br><b>Location:</b> bei Google Maps einfach „Casa Indigo Mare“ eingeben — oder hier auf die Karte tippen.<br><b>Parken:</b> am besten oben an der Straße kurz vor der Einfahrt parken, dann muss unten niemand auf engem Raum wenden.",
     maps:ORT_MAPS },
-  { kategorie:"Programm", name:"Brunch au Soleil", info:"Sonntag, 5. Juli 2026 · ab 12.30 Uhr",
+  { kategorie:"Programm", name:"Brunch au Soleil", info:"Sonntag, 5. Juli 2026 · ab 12.30 Uhr", video:"assets/event-brunch.mp4",
     text:"Entspannter Strand-Brunch am Tag danach. Kommt, wie ihr mögt.",
     tip:"<b>Dresscode:</b> Beach Casual – Badesachen, Leinen, barfuß im Sand.",
     maps:ORT_MAPS },
@@ -452,9 +443,6 @@ const DATEN = [
     text:"Direkt am Strand, Tische mit freiem Blick aufs türkise Meer. Frische hausgemachte Gerichte wie gegrillte Garnelen und der korsische Burger, herzlicher Service, entspannte Sonnenatmosphäre.",
     tip:"<b>Tipp:</b> sehr beliebt – am besten vormittags (9.30–12 Uhr) reservieren.",
     maps:M("Paillote Casa Médéa Cala Médéa Corse") },
-  { kategorie:"Restaurants", gruppe:"Mittags", name:"Paillotte du Rupione", info:"4,6 ★ · Plage du Rupione · €€", bild:"assets/resto-rupione.jpg",
-    text:"Charmante Paillote mit den Füßen quasi im Wasser. Großzügige Portionen, frische mediterran-korsische Küche von Steak bis Salat, Barfuß-im-Sand-Ambiente, gutes Preis-Leistungs-Verhältnis.",
-    maps:M("Paillotte du Rupione Corse") },
   { kategorie:"Restaurants", gruppe:"Mittags", name:"La Plage d’Argent", info:"Mare e Sole · €€", bild:"assets/resto-plage-argent.jpg",
     text:"Traumhafte Lage am langen Sandstrand mit weitem Meerblick. Gelobt: hausgemachter Burger, Lammhaxe, ausgezeichnetes Rinder-Tatar, Wurstplatten mit lokalen Spezialitäten und frischer Fisch.",
     maps:M("La Plage d'Argent Mare e Sole Corse") },
@@ -503,7 +491,7 @@ const DATEN = [
     text:"Kleine, ruhige Bucht mit feinem, leicht rosa schimmerndem Sand, selbst in der Saison angenehm leer. Klares Wasser, zwei Strandkneipen direkt am Sand.",
     tip:"<b>Tipp:</b> großer kostenloser Parkplatz, Supermarkt in der Nähe, im Sommer Bootsverleih.",
     maps:M("Plage de la Medea Corse") },
-  { kategorie:"Strände", sea:true, name:"Plage du Ruppione", info:"feine Bucht, Surf-Spot · ~12 Min. von Porticcio",
+  { kategorie:"Strände", sea:true, name:"Plage du Ruppione", info:"feine Bucht, Surf-Spot · ~12 Min. von Porticcio", bild:"assets/strand-ruppione.jpg",
     text:"Rund 600 m feiner weißer Sand und türkises Wasser, von Felsen eingerahmt – früh morgens fast für sich allein. An windigen Tagen beliebter Surf-Spot mit lässigem Flair.",
     tip:"<b>Tipp:</b> Parkplätze & Supermarkt nahe, Strandbar, Verleih von Kajaks und SUP. Für einen Snack lohnt der Stopp bei der Bäckerei Abre Pain.",
     maps:M("Plage du Ruppione Corse") },
@@ -515,10 +503,10 @@ const DATEN = [
     text:"Etwas weiter Richtung Westen, jenseits von Ajaccio – einer der schönsten Strände der ganzen Region, weit und natürlich. Perfekt zum Baden und für eine Wanderung entlang der Küste.",
     tip:"<b>Tipp:</b> lässt sich wunderbar mit der Wanderung von den Îles Sanguinaires nach Capo di Feno verbinden.",
     maps:M("Plage de Capo di Feno Ajaccio") },
-  { kategorie:"Strände", sea:true, name:"Cala d’Orzu", info:"türkise Traumbucht · abgelegen im Süden",
+  { kategorie:"Strände", sea:true, name:"Cala d’Orzu", info:"türkise Traumbucht · abgelegen im Süden", bild:"assets/strand-cala-d-orzu.jpg",
     text:"Traumhafte Bucht mit leuchtend türkisfarbenem Wasser, etwas südlicher am Golf gelegen – ein lohnendes Ziel für einen besonderen Strandtag.",
     maps:M("Cala d'Orzu Coti-Chiavari Corse") },
-  { kategorie:"Strände", sea:true, name:"Plage de Ste Barbe", info:"versteckte Bucht, Pinienwald · ~13 Min. von Porticcio",
+  { kategorie:"Strände", sea:true, name:"Plage de Ste Barbe", info:"versteckte Bucht, Pinienwald · ~13 Min. von Porticcio", bild:"assets/strand-ste-barbe.jpg",
     text:"Versteckte Bucht mit ganz eigenem Charme – „italienisches Riviera-Feeling der 60er Jahre“. Ein stiller Geheimtipp abseits der größeren Strände.",
     maps:M("Plage Sainte Barbe Corse") },
 
@@ -612,6 +600,7 @@ function cardHTML(d){
       </div>
       ${d.info?`<div class="meta">${esc(d.info)}</div>`:""}
       ${d.bild?`<img class="cardimg" src="${d.bild}" alt="${esc(d.name)}" loading="lazy">`:""}
+      ${d.video?`<video class="cardvid" src="${d.video}" autoplay muted loop playsinline preload="auto"></video>`:""}
       <p>${esc(d.text)}</p>
       ${d.tip?`<div class="tip">${d.tip}</div>`:""}
       ${(d.maps||d.link||d.links)?`<div class="links">
@@ -714,27 +703,11 @@ render();
   const SONNE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 18.4V21M3 12h2.6M18.4 12H21M5.1 5.1l1.85 1.85M17.05 17.05l1.85 1.85M18.9 5.1l-1.85 1.85M6.95 17.05 5.1 18.9"/></svg>';
   const MOND='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 
-  // Animiertes Hintergrundvideo (nur das aktive laden; bei „Bewegung reduzieren" gar nicht)
-  const vid=document.getElementById("bgVideo");
-  const ruhig=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const VIDEO={dark:"assets/bg.mp4", light:"assets/bg-day.mp4"};
-  function videoSetzen(theme){
-    if(!vid || ruhig) return;                 // Sparmodus/Reduce-Motion → nur Standbild
-    const src=VIDEO[theme];
-    if(vid.getAttribute("src")===src) return; // schon geladen
-    vid.classList.remove("playing");
-    vid.src=src; vid.muted=true; vid.load();
-    const p=vid.play();
-    if(p && p.catch) p.catch(()=>{});         // Autoplay blockiert → Standbild bleibt sichtbar
-  }
-  if(vid) vid.addEventListener("playing", ()=> vid.classList.add("playing"));
-
   let manuell=false; // sobald der Nutzer selbst umschaltet, folgen wir dem System nicht mehr
 
   function anwenden(theme){
     root.dataset.theme=theme;
     if(meta) meta.setAttribute("content", FARBE[theme]);
-    videoSetzen(theme);
     // Icon zeigt die AKTUELLE Ansicht: Sonne = Tag, Mond = Nacht
     btn.innerHTML = theme==="light" ? SONNE : MOND;
     btn.setAttribute("aria-label", theme==="light" ? "Zur Nacht-Ansicht wechseln" : "Zur Tag-Ansicht wechseln");
