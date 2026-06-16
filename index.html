@@ -603,10 +603,9 @@ const tabsEl=document.getElementById("tabs"), listEl=document.getElementById("li
       countEl=document.getElementById("count"), searchEl=document.getElementById("search");
 
 function scrollZurListe(){
-  const ctrl=document.querySelector(".controls");
-  const y = ctrl ? ctrl.offsetTop : 0;
-  window.scrollTo(0, y);                          // sofort
-  requestAnimationFrame(()=>window.scrollTo(0, y)); // nach Neu-Aufbau noch einmal (sicher auf Mobile)
+  // Beim Tab-Wechsel einfach ganz nach oben (inkl. Hero) – simpel & zuverlässig
+  window.scrollTo(0, 0);                          // sofort
+  requestAnimationFrame(()=>window.scrollTo(0, 0)); // nach Neu-Aufbau noch einmal (sicher auf Mobile)
 }
 
 KATEGORIEN.forEach(k=>{
