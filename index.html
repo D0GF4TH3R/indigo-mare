@@ -248,6 +248,11 @@
   .card .meta{
     font-style:italic;font-size:15px;color:var(--rose-deep);margin-top:3px;
   }
+  .card .cardimg{
+    display:block;width:100%;height:180px;object-fit:cover;object-position:center;
+    border-radius:12px;margin-top:13px;background:var(--field);
+    border:1px solid var(--card-line);
+  }
   .card p{font-size:16.5px;color:var(--ptext);margin-top:10px;line-height:1.5}
   .card .tip{
     font-size:14.5px;color:var(--soft);margin-top:11px;
@@ -277,6 +282,7 @@
   }
   footer .fleur{color:var(--gold);font-size:18px;display:block;margin-bottom:6px}
   footer .names{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--sage-deep)}
+  footer .credits{font-size:11.5px;color:var(--soft);opacity:.55;margin-top:16px;line-height:1.5}
 
   /* ---------- Easter Egg ---------- */
   .hero h1{cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
@@ -349,6 +355,7 @@
   Ich freue mich auf euch<br>
   Fragen? Findet ihr oben unter „Programm“<br>
   <span class="names">Eure Elke</span>
+  <div class="credits">Strandfotos: JeanbaptisteM (Flickr) · Pierre Bona &amp; Wikimedia Commons · CC BY</div>
 </footer>
 
 <script>
@@ -397,41 +404,41 @@ const DATEN = [
     tip:"<b>Tipp:</b> ein kleiner, wendiger Wagen ist auf den engen Küsten- und Bergstraßen klar im Vorteil.",
     maps:M("Location de voiture Aéroport Ajaccio") },
 
-  { kategorie:"Hotels", name:"Le Maquis – L’Arbousier", info:"€€€ · 5-Sterne-Hotel · ~7 Min. nach Casa Indigo Mare",
+  { kategorie:"Hotels", name:"Le Maquis – L’Arbousier", info:"€€€ · 5-Sterne-Hotel · ~7 Min. nach Casa Indigo Mare", bild:"assets/hotel-le-maquis.jpg",
     text:"Die erste Adresse direkt vor der Haustür: eine ehemalige korsische Familienvilla von 1949, 18 Zimmer und 7 Suiten, eigene kleine Privatstrand-Bucht, Innen- und Außenpool und das gastronomische Restaurant L’Arbousier mit Blick auf die Îles Sanguinaires. Ruhig an der Südseite des Golfs, ~15 Min. vom Flughafen.",
     tip:"<b>Tipp:</b> klein und sehr beliebt – für die Hochzeitstage früh reservieren. Tel. +33 4 95 25 05 55.",
     maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJEYkOv-xB2hIR3BlcCkPDRZY", link:"https://www.lemaquis.com", linklabel:"Website" },
 
-  { kategorie:"Hotels", name:"Sofitel Golfe d’Ajaccio Thalassa", info:"€€ · 5-Sterne Sea & Spa · ~7 Min. nach Casa Indigo Mare",
+  { kategorie:"Hotels", name:"Sofitel Golfe d’Ajaccio Thalassa", info:"€€ · 5-Sterne Sea & Spa · ~7 Min. nach Casa Indigo Mare", bild:"assets/hotel-sofitel.jpg",
     text:"Großzügiges 5-Sterne-Haus auf einer eigenen Landzunge mit Panoramablick auf die Bucht und die Sanguinaires. Marine-Spa, beheizter Meerwasserpool, kleiner Privatstrand, Restaurant La Carte Postale mit Meerblick. ~15 Min. zum Flughafen.",
     tip:"<b>Tipp:</b> ideal für alle, die Wellness/Spa mögen. Tel. +33 4 95 29 40 40.",
     maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJa-zvE5w92hIRfl94D9D4Y3I", link:"https://sofitel.accor.com/de/hotels/0587.html", linklabel:"Website" },
 
-  { kategorie:"Hotels", name:"Radisson Blu Resort & Spa", info:"€€ · Resort & Spa · ~5 Min. nach Casa Indigo Mare",
+  { kategorie:"Hotels", name:"Radisson Blu Resort & Spa", info:"€€ · Resort & Spa · ~5 Min. nach Casa Indigo Mare", bild:"assets/hotel-radisson.jpg",
     text:"Modernes Resort an der Bucht mit Pool, Spa und Restaurants – die komfortable, unkomplizierte Wahl mit allem Drum und Dran, gut für Familien und längere Aufenthalte.",
     tip:"<b>Tipp:</b> Tel. +33 4 95 77 97 97.",
     maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJBXrppapB2hIRztwfRt2E9D8", link:"https://www.radissonhotels.com/en-us/hotels/radisson-blu-resort-ajaccio-bay-spa", linklabel:"Website" },
 
-  { kategorie:"Hotels", name:"Terra di Gaya", info:"€€ · Boutique · ~5 Min. nach Casa Indigo Mare",
+  { kategorie:"Hotels", name:"Terra di Gaya", info:"€€ · Boutique · ~5 Min. nach Casa Indigo Mare", bild:"assets/hotel-terra-di-gaya.jpg",
     text:"Modernes Boutique-Hotel mit Blick auf den Golf von Ajaccio, ganz nah an der Casa – eine stilvolle, überschaubare Adresse für alle, die es persönlicher mögen.",
     maps:M("Terra di Gaya Porticcio Corse"), link:"https://www.google.com/maps/search/?api=1&query=Terra+di+Gaya+Porticcio", linklabel:"Auf Karte" },
 
-  { kategorie:"Hotels", name:"Villa Urbana", info:"€€€ · Boutique-Hotel · ~7 Min. nach Casa Indigo Mare",
+  { kategorie:"Hotels", name:"Villa Urbana", info:"€€€ · Boutique-Hotel · ~7 Min. nach Casa Indigo Mare", bild:"assets/hotel-villa-urbana.jpg",
     text:"Elegante Villa in der Nähe – charmante, persönlichere Alternative zu den großen Häusern, ruhig gelegen.",
     tip:"<b>Tipp:</b> Tel. +33 6 74 25 54 95.",
     maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJaR7eVOU92hIRbndl4oGeJxo", link:"https://www.villaurbana-corse.com", linklabel:"Website" },
 
-  { kategorie:"Hotels", name:"Villa Kirssis", info:"€€ · Boutique-B&B · ~5 Min. nach Casa Indigo Mare",
+  { kategorie:"Hotels", name:"Villa Kirssis", info:"€€ · Boutique-B&B · ~5 Min. nach Casa Indigo Mare", bild:"assets/hotel-villa-kirssis.jpg",
     text:"Gemütliche Villa in Pietrosella, ganz in der Nähe der Casa – familiär und persönlich, schöne Basis für ein paar Tage am Golf.",
     tip:"<b>Tipp:</b> Tel. +33 6 77 52 94 88.",
     maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJnbvq--NB2hIR5akdT6BhTWk", link:"https://www.villakirssis.com", linklabel:"Website" },
 
-  { kategorie:"Hotels", name:"Le Jardin d’Emile", info:"Hotel de charme · ~7 Min. nach Casa Indigo Mare",
+  { kategorie:"Hotels", name:"Le Jardin d’Emile", info:"Hotel de charme · ~7 Min. nach Casa Indigo Mare", bild:"assets/hotel-jardin-emile.jpg",
     text:"Charmante kleine Adresse am Strand von Ruppione – idyllisch und entspannt, mit Garten direkt an der Küste.",
     tip:"<b>Tipp:</b> Tel. +33 6 11 81 47 08.",
     maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJS27Kh5K6yRIRtCQVZ-NYnII", link:"https://www.jardindemile.com", linklabel:"Website" },
 
-  { kategorie:"Hotels", name:"Les Suites d’Agosta", info:"Apart-Suiten · ~7 Min. nach Casa Indigo Mare",
+  { kategorie:"Hotels", name:"Les Suites d’Agosta", info:"Apart-Suiten · ~7 Min. nach Casa Indigo Mare", bild:"assets/hotel-suites-agosta.jpg",
     text:"Apart-Suiten nahe dem langen Strand von Agosta – ideal für alle, die etwas mehr Platz und eine eigene Küche möchten.",
     tip:"<b>Tipp:</b> Tel. +33 6 21 30 83 28.",
     maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJ89EN_4xB2hIRm8p6w1YFpFs", link:"https://www.booking.com/hotel/fr/les-suites-d-39-agosta.html", linklabel:"Buchen" },
@@ -441,50 +448,50 @@ const DATEN = [
     tip:"<b>Tipp:</b> in der Airbnb-Suche „Isolella“ oder „Porticcio“ eingeben und nach Nähe zur Casa Indigo Mare filtern.",
     maps:M("Route de l Isolella 20166 Porticcio Corse"), link:"https://www.airbnb.de/s/Porticcio--Corse", linklabel:"Airbnb suchen" },
 
-  { kategorie:"Restaurants", gruppe:"Mittags", name:"Paillote Casa Médéa", info:"4,9 ★ · Plage de Cala Médéa · €€",
+  { kategorie:"Restaurants", gruppe:"Mittags", name:"Paillote Casa Médéa", info:"4,9 ★ · Plage de Cala Médéa · €€", bild:"assets/resto-casa-medea.jpg",
     text:"Direkt am Strand, Tische mit freiem Blick aufs türkise Meer. Frische hausgemachte Gerichte wie gegrillte Garnelen und der korsische Burger, herzlicher Service, entspannte Sonnenatmosphäre.",
     tip:"<b>Tipp:</b> sehr beliebt – am besten vormittags (9.30–12 Uhr) reservieren.",
     maps:M("Paillote Casa Médéa Cala Médéa Corse") },
-  { kategorie:"Restaurants", gruppe:"Mittags", name:"Paillotte du Rupione", info:"4,6 ★ · Plage du Rupione · €€",
+  { kategorie:"Restaurants", gruppe:"Mittags", name:"Paillotte du Rupione", info:"4,6 ★ · Plage du Rupione · €€", bild:"assets/resto-rupione.jpg",
     text:"Charmante Paillote mit den Füßen quasi im Wasser. Großzügige Portionen, frische mediterran-korsische Küche von Steak bis Salat, Barfuß-im-Sand-Ambiente, gutes Preis-Leistungs-Verhältnis.",
     maps:M("Paillotte du Rupione Corse") },
-  { kategorie:"Restaurants", gruppe:"Mittags", name:"La Plage d’Argent", info:"Mare e Sole · €€",
+  { kategorie:"Restaurants", gruppe:"Mittags", name:"La Plage d’Argent", info:"Mare e Sole · €€", bild:"assets/resto-plage-argent.jpg",
     text:"Traumhafte Lage am langen Sandstrand mit weitem Meerblick. Gelobt: hausgemachter Burger, Lammhaxe, ausgezeichnetes Rinder-Tatar, Wurstplatten mit lokalen Spezialitäten und frischer Fisch.",
     maps:M("La Plage d'Argent Mare e Sole Corse") },
 
-  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Maquis – L’Arbousier", info:"Porticcio · €€€",
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Maquis – L’Arbousier", info:"Porticcio · €€€", bild:"assets/hotel-le-maquis.jpg",
     text:"Das gastronomische Restaurant des Hotels Le Maquis, praktisch vor der Haustür. Traumhafte Terrasse mit Blick über die Bucht bis zu den Îles Sanguinaires, feine mediterran-korsische Küche, aufmerksamer Service. Mittags wie abends ein Genuss.",
     tip:"<b>Tipp:</b> Hotelrestaurant – unbedingt früh reservieren, ein Tisch für externe Gäste ist nicht immer garantiert. Nur wenige Minuten entfernt.",
     maps:M("Le Maquis Porticcio Corse") },
-  { kategorie:"Restaurants", gruppe:"Abends", name:"Villa Cala Médéa", info:"Isolella · €€",
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Villa Cala Médéa", info:"Isolella · €€", bild:"assets/resto-villa-cala-medea.jpg",
     text:"Die elegantere Adresse mit traumhafter Terrasse und Meerblick, zum Sonnenuntergang besonders romantisch. Warme, stimmungsvolle Atmosphäre, aufmerksamer Service, großzügige Küche mit Fisch und Fleisch – perfekt für einen besonderen Abend.",
     maps:M("Villa Cala Médéa Isolella Corse") },
-  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Bilboq „Chez Jean-Jean“", info:"4,3 ★ · Ajaccio Altstadt · €€€",
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Bilboq „Chez Jean-Jean“", info:"4,3 ★ · Ajaccio Altstadt · €€€", bild:"assets/resto-bilboq.jpg",
     text:"Institution in den Gassen der Altstadt, nahe der Place Foch. Alles dreht sich um ein Gericht: die legendäre Hummerpasta (Spaghetti à la langouste). Wirt Jean-Jean singt zur Begrüßung Klassiker in der Gasse – urig und herzlich. Perfekt zum Abschluss eines Ajaccio-Tages.",
     tip:"<b>Tipp:</b> ab Porticcio 20–25 Min. Unbedingt reservieren; oft nur Barzahlung, v. a. in der Hummer-Saison geöffnet – vorher anrufen.",
     maps:M("Le Bilboq Ajaccio") },
-  { kategorie:"Restaurants", gruppe:"Abends", name:"Auberge U Sciatellu „Chez Séraphin“", info:"4,8 ★ · Peri · €€",
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Auberge U Sciatellu „Chez Séraphin“", info:"4,8 ★ · Peri · €€", bild:"assets/resto-sciatellu.jpg",
     text:"Rustikales, urig-authentisches Bergwirtshaus – für viele „das wahre Korsika“. Festes, mehrgängiges korsisches Menü aus lokalen, saisonalen Zutaten, herzlicher familiärer Empfang, traumhafte Höhenlage (über 2.000 Bewertungen).",
     tip:"<b>Tipp:</b> ab Porticcio 40–45 Min. über eine kurvige, grandiose Bergstraße. Reservierung empfohlen, Menü v. a. abends.",
     maps:M("Auberge U Sciatellu Peri Corse") },
-  { kategorie:"Restaurants", gruppe:"Abends", name:"Agnarellu Plage", info:"Lieu-dit Agnarellu · €€",
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Agnarellu Plage", info:"Lieu-dit Agnarellu · €€", bild:"assets/resto-agnarellu.jpg",
     text:"Strandlage mit den Füßen im Sand, herzlicher Empfang, schöne Weinauswahl, großer Holzkohle-Grill. Großartiger Sonnenuntergang und sublime Aussicht – ideal für Drinks am Abend und langsames Genießen.",
     tip:"<b>Tipp:</b> Fleisch kommt gern eine Spur zu durch – eine Garstufe niedriger bestellen. Etwas Geduld: der Grillmeister arbeitet allein.",
     maps:M("Agnarellu Plage Corse") },
 
-  { kategorie:"Restaurants", gruppe:"Bars & Beach Clubs", name:"KOS Beach Club", info:"Route des Sanguinaires · €€",
+  { kategorie:"Restaurants", gruppe:"Bars & Beach Clubs", name:"KOS Beach Club", info:"Route des Sanguinaires · €€", bild:"assets/resto-kos.jpg",
     text:"Stylischer Beach Club direkt am Wasser an der Route des Sanguinaires – chic, entspannt, mit feinem Party-Feeling. Liegen im Sand, Cocktails, frische Küche. Lässt sich perfekt mit einem Ausflug zu den Îles Sanguinaires verbinden.",
     maps:M("KOS Beach Club Ajaccio") },
-  { kategorie:"Restaurants", gruppe:"Bars & Beach Clubs", name:"La Plage d’Argent — Sundowner", info:"Mare e Sole · €€",
+  { kategorie:"Restaurants", gruppe:"Bars & Beach Clubs", name:"La Plage d’Argent — Sundowner", info:"Mare e Sole · €€", bild:"assets/resto-plage-argent.jpg",
     text:"Tagsüber Strandrestaurant, am Abend ein lässiger Spot für Drinks mit Meerblick und echtem Strandgefühl – ideal für Aperitif und Sundowner in entspannter Beachbar-Atmosphäre.",
     maps:M("La Plage d'Argent Mare e Sole Corse") },
-  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Maquis — Terrasse", info:"Porticcio · €€€",
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Maquis — Terrasse", info:"Porticcio · €€€", bild:"assets/hotel-le-maquis.jpg",
     text:"Die Terrasse des Hotels Le Maquis – elegantes Restaurant für Lunch oder Dinner mit Blick über die Bucht. Eine feine Adresse direkt um die Ecke (siehe auch L’Arbousier unter Hotels).",
     maps:M("Le Maquis Porticcio Corse") },
-  { kategorie:"Restaurants", gruppe:"Abends", name:"La Réserve Saparella", info:"4,4 ★ · Coti-Chiavari · €€€",
+  { kategorie:"Restaurants", gruppe:"Abends", name:"La Réserve Saparella", info:"4,4 ★ · Coti-Chiavari · €€€", bild:"assets/resto-reserve.jpg",
     text:"Abgelegen und mit ganz eigener Atmosphäre – ein wunderschöner, ruhiger Ort für einen besonderen Abend fernab des Trubels.",
     maps:M("La Réserve Saparella Corse") },
-  { kategorie:"Restaurants", gruppe:"Abends", name:"La Table de Murtoli", info:"Richtung Bonifacio · €€€",
+  { kategorie:"Restaurants", gruppe:"Abends", name:"La Table de Murtoli", info:"Richtung Bonifacio · €€€", bild:"assets/resto-murtoli.jpg",
     text:"Eine außergewöhnliche Adresse weiter im Süden – der perfekte Zwischenstopp auf dem Weg nach oder von Bonifacio. Eher ein Ausflugsziel als ein spontaner Abend, aber jede Fahrt wert.",
     maps:M("La Table de la Ferme Murtoli Corse") },
 
@@ -492,7 +499,7 @@ const DATEN = [
     text:"Langgestreckter Sandstrand an der Isolella-Spitze, von Felsen gesäumt, kristallklares Wasser – ideal zum Schnorcheln, kleine Fische direkt am Ufer. Geschützt vor Dünung, mehrere Zugänge, sympathischer Strand-Snack mit guter Küche.",
     tip:"<b>Tipp:</b> kostenlose Parkplätze, sehr gute Badewasserqualität.",
     maps:M("Plage A Stagnola Isolella Corse") },
-  { kategorie:"Strände", sea:true, name:"Plage de la Medea", info:"kleine, ruhige Bucht · ~13 Min. von Porticcio",
+  { kategorie:"Strände", sea:true, name:"Plage de la Medea", info:"kleine, ruhige Bucht · ~13 Min. von Porticcio", bild:"assets/strand-medea.jpg",
     text:"Kleine, ruhige Bucht mit feinem, leicht rosa schimmerndem Sand, selbst in der Saison angenehm leer. Klares Wasser, zwei Strandkneipen direkt am Sand.",
     tip:"<b>Tipp:</b> großer kostenloser Parkplatz, Supermarkt in der Nähe, im Sommer Bootsverleih.",
     maps:M("Plage de la Medea Corse") },
@@ -500,11 +507,11 @@ const DATEN = [
     text:"Rund 600 m feiner weißer Sand und türkises Wasser, von Felsen eingerahmt – früh morgens fast für sich allein. An windigen Tagen beliebter Surf-Spot mit lässigem Flair.",
     tip:"<b>Tipp:</b> Parkplätze & Supermarkt nahe, Strandbar, Verleih von Kajaks und SUP. Für einen Snack lohnt der Stopp bei der Bäckerei Abre Pain.",
     maps:M("Plage du Ruppione Corse") },
-  { kategorie:"Strände", sea:true, name:"Plage de Mare é Sole", info:"Traumstrand, türkis · ~20 Min. von Porticcio",
+  { kategorie:"Strände", sea:true, name:"Plage de Mare é Sole", info:"Traumstrand, türkis · ~20 Min. von Porticcio", bild:"assets/strand-mare-e-sole.jpg",
     text:"Weitläufiger Traumstrand, einhellig als „Paradies“ gefeiert – ultrafeiner, fast silberweißer Sand und leuchtend türkises Wasser. Dank Pinienwald wild und ursprünglich.",
     tip:"<b>Tipp:</b> kostenlose Parkplätze, schattige Strandbar. Kein Supermarkt nahe – Verpflegung mitnehmen.",
     maps:M("Plage de Mare e Sole Corse") },
-  { kategorie:"Strände", sea:true, name:"Capo di Feno", info:"wild & weit, Baden + Wandern · ~45 Min. von Porticcio",
+  { kategorie:"Strände", sea:true, name:"Capo di Feno", info:"wild & weit, Baden + Wandern · ~45 Min. von Porticcio", bild:"assets/strand-capo-di-feno.jpg",
     text:"Etwas weiter Richtung Westen, jenseits von Ajaccio – einer der schönsten Strände der ganzen Region, weit und natürlich. Perfekt zum Baden und für eine Wanderung entlang der Küste.",
     tip:"<b>Tipp:</b> lässt sich wunderbar mit der Wanderung von den Îles Sanguinaires nach Capo di Feno verbinden.",
     maps:M("Plage de Capo di Feno Ajaccio") },
@@ -515,7 +522,7 @@ const DATEN = [
     text:"Versteckte Bucht mit ganz eigenem Charme – „italienisches Riviera-Feeling der 60er Jahre“. Ein stiller Geheimtipp abseits der größeren Strände.",
     maps:M("Plage Sainte Barbe Corse") },
 
-  { kategorie:"Strände", sea:true, name:"Agosta Plage", info:"ewig lang, Wassersport · ~5 Min. von Porticcio",
+  { kategorie:"Strände", sea:true, name:"Agosta Plage", info:"ewig lang, Wassersport · ~5 Min. von Porticcio", bild:"assets/strand-agosta.jpg",
     text:"Endlos langer, rund 2 km weiter Strand mit feinem hellem Sand im Süden des Golfs. Lebhaftes Zentrum mit Restaurants, ruhigeres wildes Nordende – für jeden das passende Plätzchen.",
     tip:"<b>Tipp:</b> Wassersport über „Agosta Fun Beach“: Jetski, Parasailing, Bananenboot, SUP, Tretboote, Beachvolleyball, Kitesurf-Bereich. Duschen, WC, Liegenverleih.",
     maps:M("Agosta Plage Corse") },
@@ -604,6 +611,7 @@ function cardHTML(d){
         <span class="kicker">${esc(d.gruppe||d.kategorie)}</span>
       </div>
       ${d.info?`<div class="meta">${esc(d.info)}</div>`:""}
+      ${d.bild?`<img class="cardimg" src="${d.bild}" alt="${esc(d.name)}" loading="lazy">`:""}
       <p>${esc(d.text)}</p>
       ${d.tip?`<div class="tip">${d.tip}</div>`:""}
       ${(d.maps||d.link||d.links)?`<div class="links">
