@@ -112,6 +112,13 @@
     background-color:var(--void);
     transform:scale(1.04);transform-origin:center top;
   }
+  /* animiertes Hintergrundvideo (über dem Standbild, unter dem Verlauf) */
+  .bgvid{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:center top;
+    opacity:0;transition:opacity .7s ease;pointer-events:none;
+  }
+  .bgvid.playing{opacity:1}
   /* sanfter Verlauf, damit Inhalt unten lesbar bleibt */
   .bg::after{
     content:"";position:absolute;inset:0;
@@ -305,7 +312,9 @@
 </head>
 <body>
 
-<div class="bg"></div>
+<div class="bg" aria-hidden="true">
+  <video class="bgvid" id="bgVideo" muted loop playsinline preload="none"></video>
+</div>
 
 <button class="themebtn" id="themeBtn" type="button" aria-label="Tag- oder Nacht-Ansicht wechseln"></button>
 
@@ -696,11 +705,28 @@ render();
   const FARBE={dark:"#10182b", light:"#f8efe0"};
   const SONNE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 18.4V21M3 12h2.6M18.4 12H21M5.1 5.1l1.85 1.85M17.05 17.05l1.85 1.85M18.9 5.1l-1.85 1.85M6.95 17.05 5.1 18.9"/></svg>';
   const MOND='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+
+  // Animiertes Hintergrundvideo (nur das aktive laden; bei „Bewegung reduzieren" gar nicht)
+  const vid=document.getElementById("bgVideo");
+  const ruhig=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const VIDEO={dark:"assets/bg.mp4", light:"assets/bg-day.mp4"};
+  function videoSetzen(theme){
+    if(!vid || ruhig) return;                 // Sparmodus/Reduce-Motion → nur Standbild
+    const src=VIDEO[theme];
+    if(vid.getAttribute("src")===src) return; // schon geladen
+    vid.classList.remove("playing");
+    vid.src=src; vid.muted=true; vid.load();
+    const p=vid.play();
+    if(p && p.catch) p.catch(()=>{});         // Autoplay blockiert → Standbild bleibt sichtbar
+  }
+  if(vid) vid.addEventListener("playing", ()=> vid.classList.add("playing"));
+
   let manuell=false; // sobald der Nutzer selbst umschaltet, folgen wir dem System nicht mehr
 
   function anwenden(theme){
     root.dataset.theme=theme;
     if(meta) meta.setAttribute("content", FARBE[theme]);
+    videoSetzen(theme);
     // Icon zeigt die AKTUELLE Ansicht: Sonne = Tag, Mond = Nacht
     btn.innerHTML = theme==="light" ? SONNE : MOND;
     btn.setAttribute("aria-label", theme==="light" ? "Zur Nacht-Ansicht wechseln" : "Zur Tag-Ansicht wechseln");
