@@ -92,6 +92,12 @@
     --fade1:rgba(248,239,224,.42);
     --fade2:rgba(248,239,224,.9);
   }
+
+  /* Querformat-Viewport (Desktop / breite Fenster): Landscape-Hintergründe statt Hochformat */
+  @media (orientation:landscape){
+    :root, :root[data-theme="dark"]{ --bg-img:url('assets/bg-desktop.jpg'); }
+    :root[data-theme="light"]{ --bg-img:url('assets/bg-day-desktop.jpg'); }
+  }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
   body{
@@ -346,7 +352,7 @@
   Ich freue mich auf euch<br>
   Fragen? Findet ihr oben unter „Programm“<br>
   <span class="names">Eure Elke</span>
-  <div class="credits">Einige Strandfotos: JeanbaptisteM (Flickr) · Pierre Bona &amp; Wikimedia Commons · CC BY</div>
+  <div class="credits">Einige Orts-, Strand- &amp; Aktivitätsfotos: Wikimedia Commons &amp; Flickr (CC BY / CC BY-SA)</div>
 </footer>
 
 <script>
@@ -362,6 +368,10 @@ const DATEN = [
     text:"Entspannter Strand-Brunch am Tag danach. Kommt, wie ihr mögt.",
     tip:"<b>Dresscode:</b> Beach Casual – Badesachen, Leinen, barfuß im Sand.",
     maps:ORT_MAPS },
+  { kategorie:"Programm", name:"Wetter & Klima", info:"Anfang Juli · Golf von Ajaccio",
+    text:"Anfang Juli ist Hochsommer am Golf von Ajaccio: meist 27–30 °C, viel Sonne und so gut wie kein Regen, abends mild um 22–24 °C. Das Meer ist mit ~24–25 °C herrlich angenehm.",
+    tip:"<b>Tipp:</b> Sonnenschutz, Kopfbedeckung und etwas Leichtes für laue Abende einpacken. Eine genaue Vorhersage lohnt sich erst ein paar Tage vorher.",
+    link:"https://www.google.com/search?q=wetter+pietrosella+korsika", linklabel:"Aktuelle Vorhersage" },
   { kategorie:"Programm", name:"WhatsApp-Gruppe", info:"Alle Infos & Updates an einem Ort",
     text:"Tretet unserer Gruppe „La Grande Fête · Nuit Indigo Mare“ bei – hier teilen wir kurzfristige Infos, Treffpunkte und Fotos. Einfach auf den Link tippen.",
     link:"https://chat.whatsapp.com/L8vj8bXDtGP9WBig48IWEm", linklabel:"Gruppe beitreten", linkstyle:"whatsapp" },
@@ -531,11 +541,11 @@ const DATEN = [
     text:"Das ganz große Korsika-Erlebnis: Calanche de Piana (UNESCO-Weltnaturerbe, rosa Granitfelsen, durch deren Spalten das Boot heranfährt), Naturschutzgebiet La Scandola und das nur per Boot erreichbare Fischerdorf Girolata. Eines der schönsten Naturerlebnisse der Insel.",
     maps:M("Calanche de Piana Corse") },
 
-  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Padel & Tennis · Terra Bella Country Club", info:"Porticcio",
+  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Padel & Tennis · Terra Bella Country Club", info:"Porticcio", bild:"assets/aktiv-padel.jpg",
     text:"Erste Adresse für Padel: zwei verglaste Courts mit Flutlicht (auch abends), eine Minute von Stränden und Restaurants. Entspannt, familiär, auf Wunsch Einzel- oder Gruppenstunden. Dazu zwei Sand- und ein Hartplatz für Tennis (täglich 8–22 Uhr).",
     tip:"<b>Tipp:</b> Platz buchen über ballejaune.com/club/tcterrabella oder +33 6 12 28 81 89.",
     link:"https://ballejaune.com/club/tcterrabella" },
-  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Tennis Club Ajaccio", info:"Ajaccio · 7 Tage/Woche · ~20 €/Std",
+  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Tennis Club Ajaccio", info:"Ajaccio · 7 Tage/Woche · ~20 €/Std", bild:"assets/aktiv-tennis.jpg",
     text:"Stundenweise Platzmiete – ohne Mitgliedschaft oder Lizenz, ideal für Urlauber.",
     tip:"<b>Tipp:</b> Buchung über ballejaune.com/club/tcajaccio.",
     link:"https://ballejaune.com/club/tcajaccio" },
@@ -543,17 +553,17 @@ const DATEN = [
     text:"„Location de Vélo Porticcio – Rive Sud“ verleiht klassische und elektrische Mountainbikes (E-MTB ~60 km Reichweite), kostenlose Lieferung an der Ajaccio–Porticcio-Fähre (+33 6 03 78 43 67). Alternativ „Lucky Loc 2A“ nahe dem Fähranleger.",
     tip:"<b>Tipp:</b> beide auf Touren- und E-Bikes spezialisiert. Wer ein echtes Rennrad braucht, fragt vorab gezielt nach.",
     link:"tel:+33603784367" },
-  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Rennrad-Strecken ab Porticcio", info:"3 Klassiker",
+  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Rennrad-Strecken ab Porticcio", info:"3 Klassiker", bild:"assets/aktiv-rennrad.jpg",
     text:"(1) Küstentour Richtung Îles Sanguinaires – flache Postkarten-Strecke, ~35 km, Meerblick. (2) Bergauf zum Lac de Tolla durch das Prunelli-Tal (~38 km / 890 hm; große Variante ab Bastelica ~85 km / 2.050 hm). (3) Südküste Richtung Coti-Chiavari über Pietrosella und Isolella, ~50 km.",
     tip:"<b>Tipp:</b> GPS-Tracks auf Komoot, Strava oder Wikiloc. Die Küstentouren sind am einsteigerfreundlichsten." },
 
   { kategorie:"Aktivitäten", gruppe:"Auf dem Wasser", name:"Jetski & Motorboot", info:"Agosta Plage",
     text:"An der Agosta Plage könnt ihr Jetski fahren oder ein Motorboot mieten – mit oder ohne Bootsführerschein. Ideal, um den Golf vom Wasser aus zu erkunden und versteckte Buchten anzusteuern.",
     maps:M("Agosta Plage Corse") },
-  { kategorie:"Aktivitäten", gruppe:"Auf dem Wasser", name:"Bonifacio & Lavezzi-Inseln", info:"Tagesausflug Süden",
+  { kategorie:"Aktivitäten", gruppe:"Auf dem Wasser", name:"Bonifacio & Lavezzi-Inseln", info:"Tagesausflug Süden", bild:"assets/aktiv-bonifacio.jpg",
     text:"Ein Klassiker für längere Aufenthalte: die spektakuläre Klippenstadt Bonifacio im Süden, kombiniert mit einem Bootsausflug zum Naturparadies der Lavezzi-Inseln mit ihrem glasklaren Wasser.",
     maps:M("Bonifacio Corse") },
-  { kategorie:"Aktivitäten", gruppe:"Natur & Abenteuer", name:"Wanderung Sanguinaires → Capo di Feno", info:"Küstenwanderung",
+  { kategorie:"Aktivitäten", gruppe:"Natur & Abenteuer", name:"Wanderung Sanguinaires → Capo di Feno", info:"Küstenwanderung", bild:"assets/aktiv-wanderung.jpg",
     text:"Schöne Küstenwanderung von den Îles Sanguinaires hinüber nach Capo di Feno – dramatische Landschaft, Meerblick und am Ende einer der schönsten Strände der Region zum Abkühlen.",
     maps:M("Pointe de la Parata Ajaccio") },
   { kategorie:"Aktivitäten", gruppe:"Natur & Abenteuer", name:"Canyoning · Cors'Aventure", info:"Bocognano · ~50 Min. von Porticcio", bild:"assets/ausflug-canyoning.jpg",
@@ -563,11 +573,11 @@ const DATEN = [
   { kategorie:"Aktivitäten", gruppe:"Natur & Abenteuer", name:"Reiten in Molini", info:"Porticcio",
     text:"Ausritt rund um Molini bei Porticcio – entspanntes Reiten durch die korsische Macchia, schön für alle Levels.",
     maps:M("Centre équestre Molini Porticcio Corse") },
-  { kategorie:"Aktivitäten", gruppe:"Wein & Kultur", name:"Weingüter & Tastings", info:"Domaines rund um Ajaccio",
+  { kategorie:"Aktivitäten", gruppe:"Wein & Kultur", name:"Weingüter & Tastings", info:"Domaines rund um Ajaccio", bild:"assets/aktiv-weingut.jpg",
     text:"Korsika ist ein eigenes, spannendes Weinland. Schöne Adressen für eine Verkostung: Domaine de Peretti della Rocca, Domaine Comte Peraldi und Domaine Fumicicoli.",
     tip:"<b>Tipp:</b> vorher anrufen und einen Verkostungstermin ausmachen.",
     maps:M("Domaine Comte Peraldi Ajaccio") },
-  { kategorie:"Aktivitäten", gruppe:"Wein & Kultur", name:"Altstadt von Ajaccio", info:"Napoleons Geburtsstadt",
+  { kategorie:"Aktivitäten", gruppe:"Wein & Kultur", name:"Altstadt von Ajaccio", info:"Napoleons Geburtsstadt", bild:"assets/aktiv-ajaccio-altstadt.jpg",
     text:"Ein Bummel durch Ajaccio: pastellfarbene Gassen, der lebhafte Hafen, der Markt mit korsischen Spezialitäten, Maison Bonaparte, Place Foch und die Zitadelle am Meer.",
     maps:M("Ajaccio vieille ville") }
 ];
