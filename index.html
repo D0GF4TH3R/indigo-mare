@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>La Grande Fête · Casa Indigo Mare</title>
+<meta name="theme-color" content="#10182b">
+
+<meta property="og:title" content="La Grande Fête · La Nuit Indigo Mare">
+<meta property="og:description" content="Programm, WhatsApp-Gruppe & unser Korsika-Guide — Restaurants, Strände, Ausflüge & Sport am Golf von Ajaccio.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://d0gf4th3r.github.io/indigo-mare/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://d0gf4th3r.github.io/indigo-mare/preview.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+  /* ===== NACHT (Dark) – Standard ===== */
+  :root,
+  :root[data-theme="dark"]{
+    --paper:#10182b;          /* tiefes Nachtblau (Seitengrund unten) */
+    --void:#0c1322;           /* Grundfarbe hinter dem Hintergrundbild */
+    --ink:#eef1f6;            /* heller, warmer Text */
+    --soft:#a8b2c6;           /* sekundärer Text, gedämpft */
+    --line:rgba(200,210,230,.18); /* zarte helle Linien */
+    --card-line:rgba(200,210,230,.14);
+    --sage:#8fb0a8;           /* mintiges Grün (Palmen) */
+    --sage-deep:#b9d2cb;
+    --rose:#e0a99a;           /* warmes Rosé – Akzent (Kleider) */
+    --rose-deep:#e9b6a6;
+    --gold:#e8c878;           /* Lichterketten-Gold */
+    --gold-hover:#f0d590;
+    --on-gold:#1a2238;        /* Textfarbe auf goldenen Buttons */
+    --sea:#7fb3c4;            /* mondhelles Meerblau */
+    --shadow:0 4px 24px rgba(0,0,0,.35), 0 1px 4px rgba(0,0,0,.25);
+    --glass:rgba(20,30,52,.62);
+    --field:rgba(30,42,68,.7);    /* Suchfeld-Hintergrund */
+    --placeholder:#8590a6;
+    --tip-bg:rgba(232,200,120,.1);
+    --controls-fade:rgba(16,24,43,.7); /* unterer Rand der Sticky-Leiste */
+    /* Texte über dem Hintergrundbild */
+    --title:#fbfcfe;
+    --head:#f4f6fa;
+    --ptext:#dce1ec;
+    --date:#e8edf5;
+    --place:#cdd6e4;
+    --title-shadow:0 2px 18px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.6);
+    --text-shadow-sm:0 1px 10px rgba(0,0,0,.5);
+    /* Hintergrundbild + Verlauf nach unten */
+    --bg-img:url('assets/bg.jpg');
+    --fade0:rgba(12,19,34,0);
+    --fade1:rgba(13,20,38,.45);
+    --fade2:rgba(14,22,42,.88);
+  }
+
+  /* ===== TAG (Light) – aus dem Tag-Aquarell abgeleitet ===== */
+  :root[data-theme="light"]{
+    --paper:#f8efe0;          /* warmes Aquarell-Papier / Sand */
+    --void:#ece0c9;           /* Sandton hinter dem Hintergrundbild */
+    --ink:#33405a;            /* tiefes See-Indigo als Fließtext */
+    --soft:#71798f;           /* gedämpfter Sekundärtext */
+    --line:rgba(45,60,95,.16);
+    --card-line:rgba(45,60,95,.12);
+    --sage:#5d8c7c;
+    --sage-deep:#3c6c5c;      /* Palmengrün, dunkler für Kontrast */
+    --rose:#c47e64;
+    --rose-deep:#b15f47;      /* Terrakotta-Akzent */
+    --gold:#c2902f;           /* tieferes Ocker-Gold für hellen Grund */
+    --gold-hover:#d3a23f;
+    --on-gold:#fff8ea;        /* helle Schrift auf Ocker-Buttons */
+    --sea:#2f93b8;            /* kräftigeres Türkis (Meer) */
+    --shadow:0 6px 22px rgba(58,72,110,.14), 0 1px 4px rgba(58,72,110,.1);
+    --glass:rgba(255,253,248,.66);
+    --field:rgba(255,253,248,.8);
+    --placeholder:#9aa0ad;
+    --tip-bg:rgba(194,144,47,.13);
+    --controls-fade:rgba(248,239,224,.7);
+    --title:#243049;
+    --head:#283450;
+    --ptext:#3f4a63;
+    --date:#2b3954;
+    --place:#475670;
+    --title-shadow:0 1px 12px rgba(255,255,255,.75), 0 1px 2px rgba(255,255,255,.6);
+    --text-shadow-sm:0 1px 8px rgba(255,255,255,.7);
+    --bg-img:url('assets/bg-day.jpg');
+    --fade0:rgba(248,239,224,0);
+    --fade1:rgba(248,239,224,.42);
+    --fade2:rgba(248,239,224,.9);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'EB Garamond',Georgia,serif;
+    color:var(--ink);line-height:1.55;font-size:17px;
+    min-height:100vh;
+    background:var(--void);
+    transition:background-color .45s ease, color .45s ease;
+  }
+
+  /* ---------- fixer Aquarell-Hintergrund ---------- */
+  .bg{
+    position:fixed;inset:0;z-index:-2;
+    background-image:var(--bg-img);
+    background-size:cover;
+    background-position:center top;
+    background-repeat:no-repeat;
+    background-color:var(--void);
+    transform:scale(1.04);transform-origin:center top;
+  }
+  /* sanfter Verlauf, damit Inhalt unten lesbar bleibt */
+  .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,
+      var(--fade0) 0%,
+      var(--fade0) 30%,
+      var(--fade1) 50%,
+      var(--fade2) 68%,
+      var(--paper) 85%);
+  }
+
+  /* ---------- Titel im Himmel ---------- */
+  .hero{
+    text-align:center;
+    padding:clamp(40px,11vh,90px) 24px clamp(20px,5vh,40px);
+    padding-top:calc(env(safe-area-inset-top,0) + clamp(40px,11vh,90px));
+  }
+  .hero .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:clamp(17px,4.5vw,21px);
+    letter-spacing:.04em;color:var(--gold);
+    margin-bottom:6px;
+    text-shadow:var(--text-shadow-sm);
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;font-size:clamp(46px,15vw,78px);
+    line-height:.96;letter-spacing:.005em;color:var(--title);
+    text-shadow:var(--title-shadow);
+  }
+  .hero .rule{
+    width:46px;height:1px;background:var(--gold);
+    margin:18px auto 14px;opacity:.8;
+  }
+  .hero .date{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(16px,4.6vw,20px);letter-spacing:.16em;
+    text-transform:uppercase;color:var(--date);
+    text-shadow:var(--text-shadow-sm);
+  }
+  .hero .place{
+    font-style:italic;font-size:15px;color:var(--place);margin-top:6px;
+    text-shadow:var(--text-shadow-sm);
+  }
+
+  /* ---------- Steuerung ---------- */
+  .controls{
+    position:sticky;top:0;z-index:20;
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    background:linear-gradient(180deg,var(--paper) 60%,var(--controls-fade));
+    padding:14px 18px 8px;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* ---------- Tag/Nacht-Umschalter ---------- */
+  .themebtn{
+    position:fixed;z-index:30;
+    top:calc(env(safe-area-inset-top,0) + 14px);right:14px;
+    width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--line);background:var(--glass);color:var(--ink);
+    backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+    box-shadow:var(--shadow);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .15s ease, background-color .45s ease, color .45s ease, border-color .45s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .themebtn:hover{transform:scale(1.06)}
+  .themebtn:active{transform:scale(.94)}
+  .themebtn svg{width:21px;height:21px}
+  .searchwrap{position:relative;max-width:620px;margin:0 auto}
+  .searchwrap svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:19px;height:19px;stroke:var(--soft)}
+  #search{
+    width:100%;font-family:'EB Garamond',serif;font-size:17px;
+    padding:13px 16px 13px 44px;
+    border:1px solid var(--line);border-radius:12px;
+    background:var(--field);color:var(--ink);
+    box-shadow:inset 0 1px 2px rgba(0,0,0,.2);
+  }
+  #search::placeholder{color:var(--placeholder);font-style:italic}
+  #search:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,200,120,.16)}
+
+  .tabs{display:flex;gap:4px;overflow-x:auto;padding:11px 18px 3px 2px;max-width:620px;margin:0 auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    flex:0 0 auto;font-family:'EB Garamond',serif;font-size:16px;
+    padding:7px 14px 9px;cursor:pointer;white-space:nowrap;
+    background:none;border:none;color:var(--soft);
+    border-bottom:2px solid transparent;transition:.18s;letter-spacing:.01em;
+  }
+  .tab:hover{color:var(--ink)}
+  .tab.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:500}
+
+  /* ---------- Liste ---------- */
+  main{max-width:620px;margin:0 auto;padding:14px 18px 8px;position:relative;z-index:1}
+  .count{font-style:italic;font-size:14.5px;color:var(--soft);padding:2px 2px 14px}
+  .group{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:22px;color:var(--sage-deep);
+    margin:6px 4px 12px;display:flex;align-items:center;gap:12px;
+    scroll-margin-top:140px;
+  }
+  .group::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .card{
+    background:var(--glass);
+    backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+    border:1px solid var(--card-line);
+    border-radius:16px;box-shadow:var(--shadow);
+    padding:20px 20px 18px;margin-bottom:14px;
+    position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--gold);opacity:.7;
+  }
+  .card.sea::before{background:var(--sea)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .card h3{
+    font-family:'Cormorant Garamond',serif;font-weight:600;
+    font-size:24px;line-height:1.12;letter-spacing:.005em;color:var(--head);
+  }
+  .kicker{
+    flex:0 0 auto;font-family:'EB Garamond',serif;font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--soft);
+    padding-top:5px;
+  }
+  .card .meta{
+    font-style:italic;font-size:15px;color:var(--rose-deep);margin-top:3px;
+  }
+  .card p{font-size:16.5px;color:var(--ptext);margin-top:10px;line-height:1.5}
+  .card .tip{
+    font-size:14.5px;color:var(--soft);margin-top:11px;
+    padding:9px 13px;background:var(--tip-bg);border-radius:9px;
+  }
+  .card .tip b{color:var(--gold);font-weight:600}
+  .card .links{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}
+  .btn{
+    font-family:'EB Garamond',serif;font-size:15px;font-weight:500;
+    text-decoration:none;padding:9px 16px;border-radius:10px;
+    display:inline-flex;align-items:center;gap:7px;transition:.15s;letter-spacing:.01em;
+  }
+  .btn-map{background:var(--gold);color:var(--on-gold)}
+  .btn-map:hover{background:var(--gold-hover)}
+  .btn-link{background:rgba(143,176,168,.16);color:var(--sage-deep);border:1px solid rgba(143,176,168,.3)}
+  .btn-link:hover{background:rgba(143,176,168,.26)}
+  .btn-wa{background:#3f9d77;color:#fdfcf8}
+  .btn-wa:hover{background:#46ad84}
+  .btn-wa svg{width:17px;height:17px}
+  .btn svg{width:16px;height:16px}
+
+  .empty{text-align:center;color:var(--soft);font-style:italic;padding:54px 20px;font-size:17px}
+
+  footer{
+    text-align:center;color:var(--soft);font-size:14px;
+    padding:30px 24px;line-height:1.8;position:relative;z-index:1;
+  }
+  footer .fleur{color:var(--gold);font-size:18px;display:block;margin-bottom:6px}
+  footer .names{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--sage-deep)}
+
+  /* ---------- Easter Egg ---------- */
+  .hero h1{cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+  #egg{
+    position:fixed;inset:0;z-index:1000;display:none;
+    flex-direction:column;align-items:center;justify-content:center;gap:22px;
+    background:rgba(6,10,20,.94);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    animation:eggFade .25s ease;
+  }
+  #egg.on{display:flex}
+  #egg img{
+    width:min(86vw,520px);border-radius:14px;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+  }
+  #egg .egg-cap{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:26px;color:var(--gold);letter-spacing:.02em;
+    text-shadow:0 2px 12px rgba(0,0,0,.5);
+  }
+  @keyframes eggFade{from{opacity:0}to{opacity:1}}
+</style>
+
+<!-- Theme früh setzen: Systemstandard (Tag/Nacht) übernehmen, bevor die Seite rendert -->
+<script>
+(function(){
+  try{
+    var hell = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    document.documentElement.dataset.theme = hell ? 'light' : 'dark';
+  }catch(e){ document.documentElement.dataset.theme = 'dark'; }
+})();
+</script>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<button class="themebtn" id="themeBtn" type="button" aria-label="Tag- oder Nacht-Ansicht wechseln"></button>
+
+<div id="egg" aria-hidden="true">
+  <img id="eggGif" alt="">
+  <div class="egg-cap">💃 Let’s dance!</div>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">La Grande Fête</div>
+  <h1>La Nuit<br>Indigo&nbsp;Mare</h1>
+  <div class="rule"></div>
+  <div class="date">4.–5. Juli 2026</div>
+  <div class="place">Casa Indigo Mare · Golf von Ajaccio, Korsika</div>
+</div>
+
+<div class="controls">
+  <div class="searchwrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="search" type="search" placeholder="Suchen … z. B. Hummer, Strand, Padel, Boot" autocomplete="off">
+  </div>
+  <div class="tabs" id="tabs"></div>
+</div>
+
+<main>
+  <div class="count" id="count"></div>
+  <div id="list"></div>
+</main>
+
+<footer>
+  <span class="fleur">✦</span>
+  Ich freue mich auf euch<br>
+  Fragen? Findet ihr oben unter „Programm“<br>
+  <span class="names">Eure Elke</span>
+</footer>
+
+<script>
+const ORT_MAPS = "https://maps.app.goo.gl/9VHoyo2LRmnLKrsNA";
+const M = q => "https://maps.google.com/?q="+encodeURIComponent(q);
+
+const DATEN = [
+  { kategorie:"Programm", name:"Nuit Indigo Mare", info:"Samstag, 4. Juli 2026 · 19.00 Uhr",
+    text:"Der große Abend bei Casa Indigo Mare. Dresscode: summer elegance.",
+    tip:"<b>Location:</b> bei Google Maps einfach „Casa Indigo Mare“ eingeben — oder hier auf die Karte tippen.<br><b>Parken:</b> am besten oben an der Straße kurz vor der Einfahrt parken, dann muss unten niemand auf engem Raum wenden.",
+    maps:ORT_MAPS },
+  { kategorie:"Programm", name:"Brunch & Beach", info:"Sonntag, 5. Juli 2026 · ab 12.30 Uhr",
+    text:"Entspannter Ausklang am Tag danach. Kommt locker, wie ihr mögt.",
+    maps:ORT_MAPS },
+  { kategorie:"Programm", name:"WhatsApp-Gruppe", info:"Alle Infos & Updates an einem Ort",
+    text:"Tretet unserer Gruppe „La Grande Fête · Nuit Indigo Mare“ bei – hier teilen wir kurzfristige Infos, Treffpunkte und Fotos. Einfach auf den Link tippen.",
+    link:"https://chat.whatsapp.com/L8vj8bXDtGP9WBig48IWEm", linklabel:"Gruppe beitreten", linkstyle:"whatsapp" },
+  { kategorie:"Programm", name:"Kontakt · Anastasia Martini", info:"Organisation · für alle Fragen",
+    text:"Für alle Fragen rund ums Fest ist Anastasia Martini eure erste Ansprechpartnerin – meldet euch jederzeit gern direkt per WhatsApp.",
+    links:[{href:"https://wa.me/491724704080", label:"WhatsApp Anastasia", style:"whatsapp"}] },
+  { kategorie:"Programm", name:"Kontakt · Amélie Bonnet", info:"Organisation & Rückmeldungen",
+    text:"Auch Amélie Bonnet hilft euch bei organisatorischen Fragen gern weiter – telefonisch oder per Mail.",
+    links:[{href:"tel:+497221210233", label:"Anrufen"},{href:"mailto:a.bonnet@ffburda.de?subject=Nuit%20Indigo%20Mare%20%E2%80%93%20Frage", label:"Mail schreiben"}] },
+
+  { kategorie:"Transport", name:"Ankunft: Flughafen Ajaccio", info:"AJA · ~30 Min. zur Casa",
+    text:"Der beste Flughafen ist Ajaccio Napoléon Bonaparte (AJA), rund 30 Minuten an der Südküste entlang nach Porticcio / Isolella. Wer über Bastia (BIA) anreist, muss ca. 2 Stunden Fahrt einplanen.",
+    tip:"<b>Tipp:</b> Taxi am besten schon vor dem Flug reservieren – am Flughafen warten selten genug Wagen. Viele Hotels bieten zudem einen eigenen Transfer über den Concierge an.",
+    maps:M("Aéroport Ajaccio Napoléon Bonaparte") },
+
+  { kategorie:"Transport", name:"Taxi (vorab reservieren)", info:"Rive Sud · Tag & Nacht",
+    text:"Auf Korsika reserviert man Taxis am besten telefonisch im Voraus – spontan ein Auto zu finden, klappt selten. Von den empfohlenen Hotels und Airbnbs sind es jeweils nur ~5–10 Min. zur Casa, also bietet sich auch eine Fahrgemeinschaft mit anderen Gästen an.",
+    tip:"<b>Bewährte Fahrer vor Ort:</b><br>Taxi Chris · +33 6 18 46 49 28<br>Taxi Rudy · +33 6 15 30 54 24<br>Taxi Yellow Cab · +33 6 74 62 63 68",
+    link:"tel:+33618464928", linklabel:"Taxi Chris anrufen" },
+
+  { kategorie:"Transport", name:"Uber & Co.", info:"nur eingeschränkt verfügbar",
+    text:"Uber wird für Ajaccio zwar in der App angezeigt, ist auf Korsika aber unzuverlässig – gerade abends und nachts findet sich oft kein Wagen. Verlasst euch lieber nicht darauf und plant mit Taxi oder Mietwagen.",
+    tip:"<b>Tipp:</b> für die Rückfahrt nach dem Fest unbedingt vorab ein Taxi bestellen oder mit dem Mietwagen kommen." },
+
+  { kategorie:"Transport", name:"Mietwagen", info:"die entspannteste Option",
+    text:"Wer flexibel sein und die Strände, Ausflüge und Restaurants frei ansteuern möchte, fährt mit dem Mietwagen am besten. Alle großen Vermieter sind direkt am Flughafen Ajaccio vertreten – früh buchen lohnt sich, gerade in der Hochsaison.",
+    tip:"<b>Tipp:</b> ein kleiner, wendiger Wagen ist auf den engen Küsten- und Bergstraßen klar im Vorteil.",
+    maps:M("Location de voiture Aéroport Ajaccio") },
+
+  { kategorie:"Hotels", name:"Le Maquis – L’Arbousier", info:"5 Sterne · €€€ · direkt in Porticcio",
+    text:"Die erste Adresse direkt vor der Haustür: eine ehemalige korsische Familienvilla von 1949, 18 Zimmer und 7 Suiten, eigene kleine Privatstrand-Bucht, Innen- und Außenpool und das gastronomische Restaurant L’Arbousier mit Blick auf die Îles Sanguinaires. Ruhig an der Südseite des Golfs, ~15 Min. vom Flughafen.",
+    tip:"<b>Tipp:</b> klein und sehr beliebt – für die Hochzeitstage früh reservieren. Tel. +33 4 95 25 05 55.",
+    maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJEYkOv-xB2hIR3BlcCkPDRZY", link:"https://www.lemaquis.com", linklabel:"Website" },
+
+  { kategorie:"Hotels", name:"Sofitel Golfe d’Ajaccio Thalassa", info:"€€ · Sea & Spa · ~7 Min. zur Casa",
+    text:"Großzügiges 5-Sterne-Haus auf einer eigenen Landzunge mit Panoramablick auf die Bucht und die Sanguinaires. Marine-Spa, beheizter Meerwasserpool, kleiner Privatstrand, Restaurant La Carte Postale mit Meerblick. ~15 Min. zum Flughafen.",
+    tip:"<b>Tipp:</b> ideal für alle, die Wellness/Spa mögen. Tel. +33 4 95 29 40 40.",
+    maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJa-zvE5w92hIRfl94D9D4Y3I", link:"https://sofitel.accor.com/de/hotels/0587.html", linklabel:"Website" },
+
+  { kategorie:"Hotels", name:"Radisson Blu Resort & Spa", info:"€€ · Agosta · ~5 Min. zur Casa",
+    text:"Modernes Resort an der Bucht mit Pool, Spa und Restaurants – die komfortable, unkomplizierte Wahl mit allem Drum und Dran, gut für Familien und längere Aufenthalte.",
+    tip:"<b>Tipp:</b> Tel. +33 4 95 77 97 97.",
+    maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJBXrppapB2hIRztwfRt2E9D8", link:"https://www.radissonhotels.com/en-us/hotels/radisson-blu-resort-ajaccio-bay-spa", linklabel:"Website" },
+
+  { kategorie:"Hotels", name:"Terra di Gaya", info:"€€ · Boutique · ~5 Min. zur Casa",
+    text:"Modernes Boutique-Hotel mit Blick auf den Golf von Ajaccio, ganz nah an der Casa – eine stilvolle, überschaubare Adresse für alle, die es persönlicher mögen.",
+    maps:M("Terra di Gaya Porticcio Corse"), link:"https://www.google.com/maps/search/?api=1&query=Terra+di+Gaya+Porticcio", linklabel:"Auf Karte" },
+
+  { kategorie:"Hotels", name:"Villa Urbana", info:"€€€ · modern · ~7 Min. zur Casa",
+    text:"Elegante Villa in der Nähe – charmante, persönlichere Alternative zu den großen Häusern, ruhig gelegen.",
+    tip:"<b>Tipp:</b> Tel. +33 6 74 25 54 95.",
+    maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJaR7eVOU92hIRbndl4oGeJxo", link:"https://www.villaurbana-corse.com", linklabel:"Website" },
+
+  { kategorie:"Hotels", name:"Villa Kirssis", info:"€€ · am Wasser · ~5 Min. zur Casa",
+    text:"Gemütliche Villa in Pietrosella, ganz in der Nähe der Casa – familiär und persönlich, schöne Basis für ein paar Tage am Golf.",
+    tip:"<b>Tipp:</b> Tel. +33 6 77 52 94 88.",
+    maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJnbvq--NB2hIR5akdT6BhTWk", link:"https://www.villakirssis.com", linklabel:"Website" },
+
+  { kategorie:"Hotels", name:"Le Jardin d’Emile", info:"Le Ruppione, Porticcio",
+    text:"Charmante kleine Adresse am Strand von Ruppione – idyllisch und entspannt, mit Garten direkt an der Küste.",
+    tip:"<b>Tipp:</b> Tel. +33 6 11 81 47 08.",
+    maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJS27Kh5K6yRIRtCQVZ-NYnII", link:"https://www.jardindemile.com", linklabel:"Website" },
+
+  { kategorie:"Hotels", name:"Les Suites d’Agosta", info:"Lot. de la Pinède, Albitreccia",
+    text:"Apart-Suiten nahe dem langen Strand von Agosta – ideal für alle, die etwas mehr Platz und eine eigene Küche möchten.",
+    tip:"<b>Tipp:</b> Tel. +33 6 21 30 83 28.",
+    maps:"https://www.google.com/maps/search/?api=1&query=hotel&query_place_id=ChIJ89EN_4xB2hIRm8p6w1YFpFs", link:"https://www.booking.com/hotel/fr/les-suites-d-39-agosta.html", linklabel:"Buchen" },
+
+  { kategorie:"Hotels", name:"Airbnb & Ferienwohnungen", info:"rund um Route de l’Isolella",
+    text:"In der Umgebung gibt es viele schöne Airbnbs – praktisch und charmant. Wir empfehlen, früh zu buchen, um die beste Auswahl zu sichern. Als Anhaltspunkt für die Lage: Route de l’Isolella, 20166 Porticcio.",
+    tip:"<b>Tipp:</b> in der Airbnb-Suche „Isolella“ oder „Porticcio“ eingeben und nach Nähe zur Casa Indigo Mare filtern.",
+    maps:M("Route de l Isolella 20166 Porticcio Corse"), link:"https://www.airbnb.de/s/Porticcio--Corse", linklabel:"Airbnb suchen" },
+
+  { kategorie:"Restaurants", gruppe:"Mittags", name:"Paillote Casa Médéa", info:"4,9 ★ · Plage de Cala Médéa · €€",
+    text:"Direkt am Strand, Tische mit freiem Blick aufs türkise Meer. Frische hausgemachte Gerichte wie gegrillte Garnelen und der korsische Burger, herzlicher Service, entspannte Sonnenatmosphäre.",
+    tip:"<b>Tipp:</b> sehr beliebt – am besten vormittags (9.30–12 Uhr) reservieren.",
+    maps:M("Paillote Casa Médéa Cala Médéa Corse") },
+  { kategorie:"Restaurants", gruppe:"Mittags", name:"Paillotte du Rupione", info:"4,6 ★ · Plage du Rupione · €€",
+    text:"Charmante Paillote mit den Füßen quasi im Wasser. Großzügige Portionen, frische mediterran-korsische Küche von Steak bis Salat, Barfuß-im-Sand-Ambiente, gutes Preis-Leistungs-Verhältnis.",
+    maps:M("Paillotte du Rupione Corse") },
+  { kategorie:"Restaurants", gruppe:"Mittags", name:"La Plage d’Argent", info:"4,4 ★ · Mare e Sole · ca. 30–40 € p. P.",
+    text:"Traumhafte Lage am langen Sandstrand mit weitem Meerblick. Gelobt: hausgemachter Burger, Lammhaxe, ausgezeichnetes Rinder-Tatar, Wurstplatten mit lokalen Spezialitäten und frischer Fisch.",
+    maps:M("La Plage d'Argent Mare e Sole Corse") },
+
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Maquis – L’Arbousier", info:"Porticcio · 5-Sterne-Hotel · gehoben",
+    text:"Das gastronomische Restaurant des Hotels Le Maquis, praktisch vor der Haustür. Traumhafte Terrasse mit Blick über die Bucht bis zu den Îles Sanguinaires, feine mediterran-korsische Küche, aufmerksamer Service. Mittags wie abends ein Genuss.",
+    tip:"<b>Tipp:</b> Hotelrestaurant – unbedingt früh reservieren, ein Tisch für externe Gäste ist nicht immer garantiert. Nur wenige Minuten entfernt.",
+    maps:M("Le Maquis Porticcio Corse") },
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Villa Cala Médéa", info:"4,4 ★ · Rond-Point de l’Isolella · €€€",
+    text:"Die elegantere Adresse mit traumhafter Terrasse und Meerblick, zum Sonnenuntergang besonders romantisch. Warme, stimmungsvolle Atmosphäre, aufmerksamer Service, großzügige Küche mit Fisch und Fleisch – perfekt für einen besonderen Abend.",
+    maps:M("Villa Cala Médéa Isolella Corse") },
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Bilboq „Chez Jean-Jean“", info:"Ajaccio Altstadt · gehoben",
+    text:"Institution in den Gassen der Altstadt, nahe der Place Foch. Alles dreht sich um ein Gericht: die legendäre Hummerpasta (Spaghetti à la langouste). Wirt Jean-Jean singt zur Begrüßung Klassiker in der Gasse – urig und herzlich. Perfekt zum Abschluss eines Ajaccio-Tages.",
+    tip:"<b>Tipp:</b> ab Porticcio 20–25 Min. Unbedingt reservieren; oft nur Barzahlung, v. a. in der Hummer-Saison geöffnet – vorher anrufen.",
+    maps:M("Le Bilboq Ajaccio") },
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Auberge U Sciatellu „Chez Séraphin“", info:"Peri · 4,8 ★ · festes Menü",
+    text:"Rustikales, urig-authentisches Bergwirtshaus – für viele „das wahre Korsika“. Festes, mehrgängiges korsisches Menü aus lokalen, saisonalen Zutaten, herzlicher familiärer Empfang, traumhafte Höhenlage (über 2.000 Bewertungen).",
+    tip:"<b>Tipp:</b> ab Porticcio 40–45 Min. über eine kurvige, grandiose Bergstraße. Reservierung empfohlen, Menü v. a. abends.",
+    maps:M("Auberge U Sciatellu Peri Corse") },
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Agnarellu Plage", info:"Lieu-dit Agnarellu · €€ · Sundowner",
+    text:"Strandlage mit den Füßen im Sand, herzlicher Empfang, schöne Weinauswahl, großer Holzkohle-Grill. Großartiger Sonnenuntergang und sublime Aussicht – ideal für Drinks am Abend und langsames Genießen.",
+    tip:"<b>Tipp:</b> Fleisch kommt gern eine Spur zu durch – eine Garstufe niedriger bestellen. Etwas Geduld: der Grillmeister arbeitet allein.",
+    maps:M("Agnarellu Plage Corse") },
+
+  { kategorie:"Restaurants", gruppe:"Bars & Beach Clubs", name:"KOS Beach Club", info:"Route des Sanguinaires, Ajaccio",
+    text:"Stylischer Beach Club direkt am Wasser an der Route des Sanguinaires – chic, entspannt, mit feinem Party-Feeling. Liegen im Sand, Cocktails, frische Küche. Lässt sich perfekt mit einem Ausflug zu den Îles Sanguinaires verbinden.",
+    maps:M("KOS Beach Club Ajaccio") },
+  { kategorie:"Restaurants", gruppe:"Bars & Beach Clubs", name:"La Plage d’Argent — Sundowner", info:"Mare e Sole · Drinks am Abend",
+    text:"Tagsüber Strandrestaurant, am Abend ein lässiger Spot für Drinks mit Meerblick und echtem Strandgefühl – ideal für Aperitif und Sundowner in entspannter Beachbar-Atmosphäre.",
+    maps:M("La Plage d'Argent Mare e Sole Corse") },
+  { kategorie:"Restaurants", gruppe:"Abends", name:"Le Maquis — Terrasse", info:"Porticcio · elegant",
+    text:"Die Terrasse des Hotels Le Maquis – elegantes Restaurant für Lunch oder Dinner mit Blick über die Bucht. Eine feine Adresse direkt um die Ecke (siehe auch L’Arbousier unter Hotels).",
+    maps:M("Le Maquis Porticcio Corse") },
+  { kategorie:"Restaurants", gruppe:"Abends", name:"La Réserve Saparella", info:"abgelegen · besonders atmosphärisch",
+    text:"Abgelegen und mit ganz eigener Atmosphäre – ein wunderschöner, ruhiger Ort für einen besonderen Abend fernab des Trubels.",
+    maps:M("La Réserve Saparella Corse") },
+  { kategorie:"Restaurants", gruppe:"Abends", name:"La Table de Murtoli", info:"Richtung Bonifacio · außergewöhnlich",
+    text:"Eine außergewöhnliche Adresse weiter im Süden – der perfekte Zwischenstopp auf dem Weg nach oder von Bonifacio. Eher ein Ausflugsziel als ein spontaner Abend, aber jede Fahrt wert.",
+    maps:M("La Table de la Ferme Murtoli Corse") },
+
+  { kategorie:"Strände", sea:true, name:"Plage A Stagnola", info:"unser Hausstrand · sehr lang",
+    text:"Langgestreckter Sandstrand an der Isolella-Spitze, von Felsen gesäumt, kristallklares Wasser – ideal zum Schnorcheln, kleine Fische direkt am Ufer. Geschützt vor Dünung, mehrere Zugänge, sympathischer Strand-Snack mit guter Küche.",
+    tip:"<b>Tipp:</b> kostenlose Parkplätze, sehr gute Badewasserqualität.",
+    maps:M("Plage A Stagnola Isolella Corse") },
+  { kategorie:"Strände", sea:true, name:"Plage de la Medea", info:"klein & fein · Geheimtipp",
+    text:"Kleine, ruhige Bucht mit feinem, leicht rosa schimmerndem Sand, selbst in der Saison angenehm leer. Klares Wasser, zwei Strandkneipen direkt am Sand.",
+    tip:"<b>Tipp:</b> großer kostenloser Parkplatz, Supermarkt in der Nähe, im Sommer Bootsverleih.",
+    maps:M("Plage de la Medea Corse") },
+  { kategorie:"Strände", sea:true, name:"Plage du Ruppione", info:"Surfer-Feeling",
+    text:"Rund 600 m feiner weißer Sand und türkises Wasser, von Felsen eingerahmt – früh morgens fast für sich allein. An windigen Tagen beliebter Surf-Spot mit lässigem Flair.",
+    tip:"<b>Tipp:</b> Parkplätze & Supermarkt nahe, Strandbar, Verleih von Kajaks und SUP. Für einen Snack lohnt der Stopp bei der Bäckerei Abre Pain.",
+    maps:M("Plage du Ruppione Corse") },
+  { kategorie:"Strände", sea:true, name:"Plage de Mare é Sole", info:"4,7 ★ · Traumstrand",
+    text:"Weitläufiger Traumstrand, einhellig als „Paradies“ gefeiert – ultrafeiner, fast silberweißer Sand und leuchtend türkises Wasser. Dank Pinienwald wild und ursprünglich.",
+    tip:"<b>Tipp:</b> kostenlose Parkplätze, schattige Strandbar. Kein Supermarkt nahe – Verpflegung mitnehmen.",
+    maps:M("Plage de Mare e Sole Corse") },
+  { kategorie:"Strände", sea:true, name:"Capo di Feno", info:"einer der schönsten · Baden & Wandern",
+    text:"Etwas weiter Richtung Westen, jenseits von Ajaccio – einer der schönsten Strände der ganzen Region, weit und natürlich. Perfekt zum Baden und für eine Wanderung entlang der Küste.",
+    tip:"<b>Tipp:</b> lässt sich wunderbar mit der Wanderung von den Îles Sanguinaires nach Capo di Feno verbinden.",
+    maps:M("Plage de Capo di Feno Ajaccio") },
+  { kategorie:"Strände", sea:true, name:"Cala d’Orzu", info:"türkisfarbene Traumbucht",
+    text:"Traumhafte Bucht mit leuchtend türkisfarbenem Wasser, etwas südlicher am Golf gelegen – ein lohnendes Ziel für einen besonderen Strandtag.",
+    maps:M("Cala d'Orzu Coti-Chiavari Corse") },
+  { kategorie:"Strände", sea:true, name:"Plage de Ste Barbe", info:"versteckt · 60er-Riviera-Flair",
+    text:"Versteckte Bucht mit ganz eigenem Charme – „italienisches Riviera-Feeling der 60er Jahre“. Ein stiller Geheimtipp abseits der größeren Strände.",
+    maps:M("Plage Sainte Barbe Corse") },
+
+  { kategorie:"Strände", sea:true, name:"Agosta Plage", info:"ewig lang · Wassersport",
+    text:"Endlos langer, rund 2 km weiter Strand mit feinem hellem Sand im Süden des Golfs. Lebhaftes Zentrum mit Restaurants, ruhigeres wildes Nordende – für jeden das passende Plätzchen.",
+    tip:"<b>Tipp:</b> Wassersport über „Agosta Fun Beach“: Jetski, Parasailing, Bananenboot, SUP, Tretboote, Beachvolleyball, Kitesurf-Bereich. Duschen, WC, Liegenverleih.",
+    maps:M("Agosta Plage Corse") },
+
+  { kategorie:"Ausflüge", name:"Sanguinaires & Altstadt Ajaccio", info:"Tagesausflug",
+    text:"Alles an einem Tag: dramatische Küste, Strandclub-Feeling, napoleonische Altstadt. Vormittags zur Pointe de la Parata (20 Min. Küstenpfad zum Genueserturm, Panoramablick auf die Îles Sanguinaires). Mittags KOS Beach Club an der Route des Sanguinaires. Nachmittags Altstadt Ajaccio: Maison Bonaparte, Place Foch, Markt, Kathedrale, Hafen, Zitadelle.",
+    tip:"<b>Tipp:</b> zum Sonnenuntergang glühen die „blutroten“ Felsen der Sanguinaires – einer der schönsten Sonnenuntergänge Korsikas. Abends Hummerpasta im „Le Bilboq“.",
+    maps:M("Pointe de la Parata Ajaccio") },
+  { kategorie:"Ausflüge", name:"Lac de Tolla", info:"grünes Hinterland · Baden",
+    text:"Durch das Prunelli-Tal hinauf zum türkisblauen Lac de Tolla, dem größten See Korsikas – klar, kühl, erfrischend. Lunch in der Paillote A Fiuminala (4,9 ★) direkt am Ufer: Moules-frites, Thunfisch, Burger, gute Cocktails. Baden & Wassersport über das Centre Nautique de Tolla (Juni–Sept): Kanu, Kajak, Tretboot, SUP, sogar eFoil. Keine Motorboote.",
+    tip:"<b>Tipp:</b> reichlich kostenlose Parkplätze. Rechtzeitig zum Essen kommen – nach dem Mittag oft nur noch Snacks.",
+    maps:M("Lac de Tolla Corse") },
+  { kategorie:"Ausflüge", name:"Bootstour Sanguinaires bei Sonnenuntergang", info:"ca. 3 Std · 4,9 ★",
+    text:"Vielleicht der romantischste Halbtagesausflug, Start direkt im Hafen von Porticcio. Vorbei an der Zitadelle Ajaccio zum Archipel, hinauf zum Leuchtturm mit 360°-Blick, Badepause im klaren Wasser. Zum Abschluss Apéritif mit korsischer Wurst, Käse und Rosé, während die Sonne die roten Felsen in Brand setzt.",
+    maps:M("Port de Plaisance Porticcio") },
+  { kategorie:"Ausflüge", name:"Große Bootstour: Piana, Scandola & Girolata", info:"Ganztag · 4,7–5,0 ★",
+    text:"Das ganz große Korsika-Erlebnis: Calanche de Piana (UNESCO-Weltnaturerbe, rosa Granitfelsen, durch deren Spalten das Boot heranfährt), Naturschutzgebiet La Scandola und das nur per Boot erreichbare Fischerdorf Girolata. Eines der schönsten Naturerlebnisse der Insel.",
+    maps:M("Calanche de Piana Corse") },
+
+  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Padel & Tennis · Terra Bella Country Club", info:"Porticcio",
+    text:"Erste Adresse für Padel: zwei verglaste Courts mit Flutlicht (auch abends), eine Minute von Stränden und Restaurants. Entspannt, familiär, auf Wunsch Einzel- oder Gruppenstunden. Dazu zwei Sand- und ein Hartplatz für Tennis (täglich 8–22 Uhr).",
+    tip:"<b>Tipp:</b> Platz buchen über ballejaune.com/club/tcterrabella oder +33 6 12 28 81 89.",
+    link:"https://ballejaune.com/club/tcterrabella" },
+  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Tennis Club Ajaccio", info:"Ajaccio · 7 Tage/Woche · ~20 €/Std",
+    text:"Stundenweise Platzmiete – ohne Mitgliedschaft oder Lizenz, ideal für Urlauber.",
+    tip:"<b>Tipp:</b> Buchung über ballejaune.com/club/tcajaccio.",
+    link:"https://ballejaune.com/club/tcajaccio" },
+  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Fahrrad- & E-Bike-Verleih", info:"Porticcio · ab ~25–30 €/Tag",
+    text:"„Location de Vélo Porticcio – Rive Sud“ verleiht klassische und elektrische Mountainbikes (E-MTB ~60 km Reichweite), kostenlose Lieferung an der Ajaccio–Porticcio-Fähre (+33 6 03 78 43 67). Alternativ „Lucky Loc 2A“ nahe dem Fähranleger.",
+    tip:"<b>Tipp:</b> beide auf Touren- und E-Bikes spezialisiert. Wer ein echtes Rennrad braucht, fragt vorab gezielt nach.",
+    link:"tel:+33603784367" },
+  { kategorie:"Aktivitäten", gruppe:"Sport vor Ort", name:"Rennrad-Strecken ab Porticcio", info:"3 Klassiker",
+    text:"(1) Küstentour Richtung Îles Sanguinaires – flache Postkarten-Strecke, ~35 km, Meerblick. (2) Bergauf zum Lac de Tolla durch das Prunelli-Tal (~38 km / 890 hm; große Variante ab Bastelica ~85 km / 2.050 hm). (3) Südküste Richtung Coti-Chiavari über Pietrosella und Isolella, ~50 km.",
+    tip:"<b>Tipp:</b> GPS-Tracks auf Komoot, Strava oder Wikiloc. Die Küstentouren sind am einsteigerfreundlichsten." },
+
+  { kategorie:"Aktivitäten", gruppe:"Auf dem Wasser", name:"Jetski & Motorboot", info:"Agosta Plage",
+    text:"An der Agosta Plage könnt ihr Jetski fahren oder ein Motorboot mieten – mit oder ohne Bootsführerschein. Ideal, um den Golf vom Wasser aus zu erkunden und versteckte Buchten anzusteuern.",
+    maps:M("Agosta Plage Corse") },
+  { kategorie:"Aktivitäten", gruppe:"Auf dem Wasser", name:"Bonifacio & Lavezzi-Inseln", info:"Tagesausflug Süden",
+    text:"Ein Klassiker für längere Aufenthalte: die spektakuläre Klippenstadt Bonifacio im Süden, kombiniert mit einem Bootsausflug zum Naturparadies der Lavezzi-Inseln mit ihrem glasklaren Wasser.",
+    maps:M("Bonifacio Corse") },
+  { kategorie:"Aktivitäten", gruppe:"Natur & Abenteuer", name:"Wanderung Sanguinaires → Capo di Feno", info:"Küstenwanderung",
+    text:"Schöne Küstenwanderung von den Îles Sanguinaires hinüber nach Capo di Feno – dramatische Landschaft, Meerblick und am Ende einer der schönsten Strände der Region zum Abkühlen.",
+    maps:M("Pointe de la Parata Ajaccio") },
+  { kategorie:"Aktivitäten", gruppe:"Natur & Abenteuer", name:"Canyoning", info:"Alta Rocca",
+    text:"Für die Abenteuerlustigen: Canyoning in den Schluchten der Alta Rocca. Anbieter: ABC Canyoning Alta Rocca und Corsica Natura / Cors Aventure.",
+    tip:"<b>Tipp:</b> vorab buchen, feste Schuhe nicht vergessen. Anfahrt ins Hinterland einplanen.",
+    link:"https://www.google.com/maps/search/?api=1&query=Canyoning+Alta+Rocca+Corse", linklabel:"Anbieter finden" },
+  { kategorie:"Aktivitäten", gruppe:"Natur & Abenteuer", name:"Reiten in Molini", info:"Porticcio",
+    text:"Ausritt rund um Molini bei Porticcio – entspanntes Reiten durch die korsische Macchia, schön für alle Levels.",
+    maps:M("Centre équestre Molini Porticcio Corse") },
+  { kategorie:"Aktivitäten", gruppe:"Wein & Kultur", name:"Weingüter & Tastings", info:"Domaines rund um Ajaccio",
+    text:"Korsika ist ein eigenes, spannendes Weinland. Schöne Adressen für eine Verkostung: Domaine de Peretti della Rocca, Domaine Comte Peraldi und Domaine Fumicicoli.",
+    tip:"<b>Tipp:</b> vorher anrufen und einen Verkostungstermin ausmachen.",
+    maps:M("Domaine Comte Peraldi Ajaccio") },
+  { kategorie:"Aktivitäten", gruppe:"Wein & Kultur", name:"Altstadt von Ajaccio", info:"Napoleons Geburtsstadt",
+    text:"Ein Bummel durch Ajaccio: pastellfarbene Gassen, der lebhafte Hafen, der Markt mit korsischen Spezialitäten, Maison Bonaparte, Place Foch und die Zitadelle am Meer.",
+    maps:M("Ajaccio vieille ville") }
+];
+
+const KATEGORIEN = ["Programm","Transport","Hotels","Restaurants","Strände","Ausflüge","Aktivitäten"];
+let aktiv = "Programm";
+const tabsEl=document.getElementById("tabs"), listEl=document.getElementById("list"),
+      countEl=document.getElementById("count"), searchEl=document.getElementById("search");
+
+KATEGORIEN.forEach(k=>{
+  const b=document.createElement("button");
+  b.className="tab"+(k==="Programm"?" active":""); b.textContent=k;
+  b.onclick=()=>{aktiv=k;[...tabsEl.children].forEach(c=>c.classList.remove("active"));b.classList.add("active");render();};
+  tabsEl.appendChild(b);
+});
+
+function icon(t){
+  if(t==="map") return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+  if(t==="wa") return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43l-.48-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>';
+  if(t==="tel") return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+  if(t==="mail") return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>';
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>';
+}
+
+function cardHTML(d){
+  return `
+    <div class="card${d.sea?' sea':''}">
+      <div class="top">
+        <h3>${esc(d.name)}</h3>
+        <span class="kicker">${esc(d.gruppe||d.kategorie)}</span>
+      </div>
+      ${d.info?`<div class="meta">${esc(d.info)}</div>`:""}
+      <p>${esc(d.text)}</p>
+      ${d.tip?`<div class="tip">${d.tip}</div>`:""}
+      ${(d.maps||d.link||d.links)?`<div class="links">
+        ${d.maps?`<a class="btn btn-map" href="${d.maps}" target="_blank" rel="noopener">${icon("map")} Auf Karte</a>`:""}
+        ${d.link?`<a class="btn ${d.linkstyle==="whatsapp"?"btn-wa":"btn-link"}" href="${d.link}" target="_blank" rel="noopener">${icon(d.linkstyle==="whatsapp"?"wa":"link")} ${esc(d.linklabel||"Öffnen")}</a>`:""}
+        ${d.links?d.links.map(l=>{
+          const wa=l.style==="whatsapp";
+          const ic=wa?"wa":(l.href.startsWith("tel:")?"tel":(l.href.startsWith("mailto:")?"mail":"link"));
+          return `<a class="btn ${wa?"btn-wa":"btn-link"}" href="${l.href}" target="_blank" rel="noopener">${icon(ic)} ${esc(l.label)}</a>`;
+        }).join(""):""}
+      </div>`:""}
+    </div>`;
+}
+
+function render(){
+  const q=searchEl.value.trim().toLowerCase();
+  const treffer=DATEN.filter(d=>{
+    const txtOk=!q||(d.name+" "+(d.info||"")+" "+d.text+" "+(d.tip||"")+" "+d.kategorie+" "+(d.gruppe||"")).toLowerCase().includes(q);
+    // Bei aktiver Suche über ALLE Kategorien suchen, sonst nur aktiven Tab zeigen
+    const katOk = q ? true : (d.kategorie===aktiv);
+    return katOk&&txtOk;
+  });
+  countEl.textContent=treffer.length===0?"":treffer.length+(treffer.length===1?" Eintrag":" Einträge");
+  if(treffer.length===0){listEl.innerHTML='<div class="empty">Nichts gefunden.<br>Versuch ein anderes Wort oder eine andere Kategorie.</div>';return;}
+
+  // Kategorien mit Untergruppen: Zwischenüberschriften statt flacher Liste
+  const GRUPPEN = {
+    "Restaurants": ["Mittags","Abends","Bars & Beach Clubs"],
+    "Aktivitäten": ["Sport vor Ort","Auf dem Wasser","Natur & Abenteuer","Wein & Kultur"]
+  };
+  if(GRUPPEN[aktiv] && !q){
+    let html="";
+    GRUPPEN[aktiv].forEach(g=>{
+      const teil=treffer.filter(d=>d.gruppe===g);
+      if(teil.length){
+        const titel = (g==="Mittags"||g==="Abends") ? g+" essen" : g;
+        html+=`<div class="group">${titel}</div>`+teil.map(cardHTML).join("");
+      }
+    });
+    listEl.innerHTML=html;
+  } else {
+    listEl.innerHTML=treffer.map(cardHTML).join("");
+  }
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+searchEl.addEventListener("input",render);
+render();
+
+/* ---------- Easter Egg: 10× schnell auf den Titel tippen ---------- */
+(function(){
+  const titel=document.querySelector(".hero h1");
+  const egg=document.getElementById("egg");
+  const gif=document.getElementById("eggGif");
+  const GIF_SRC="assets/dance.gif";
+  let taps=0, last=0, playing=false;
+
+  titel.addEventListener("click",()=>{
+    if(playing) return;
+    const now=Date.now();
+    taps = (now-last < 600) ? taps+1 : 1;  // Kette nur bei schnellen Taps
+    last=now;
+    if(taps>=10){ taps=0; starteEgg(); }
+  });
+
+  function starteEgg(){
+    playing=true;
+    // GIF erst jetzt laden, dann sauber 3× von vorn abspielen
+    let runden=0;
+    const EINMAL=2500; // ungefähre Laufzeit einer GIF-Runde in ms
+    gif.src=GIF_SRC;
+    egg.classList.add("on");
+    function naechste(){
+      runden++;
+      if(runden>=3){ ende(); return; }
+      // Neustart der Animation durch Neuzuweisung der Quelle
+      gif.src=""; gif.src=GIF_SRC;
+      timer=setTimeout(naechste,EINMAL);
+    }
+    let timer=setTimeout(naechste,EINMAL);
+    function ende(){
+      egg.classList.remove("on");
+      gif.src="";
+      playing=false;
+    }
+    // Sicherheitsnetz: per Tap aufs Overlay sofort schließen
+    egg.onclick=()=>{ clearTimeout(timer); ende(); };
+  }
+})();
+
+/* ---------- Tag/Nacht-Umschalter ----------
+   Standard ist immer der Systemstandard des Geräts (im <head> gesetzt).
+   Der Button überschreibt das nur für die laufende Sitzung – ohne Speicher,
+   beim Neuladen gilt wieder der Systemstandard (so will es das Projekt). */
+(function(){
+  const root=document.documentElement;
+  const btn=document.getElementById("themeBtn");
+  const meta=document.querySelector('meta[name="theme-color"]');
+  const mq=window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+  const FARBE={dark:"#10182b", light:"#f8efe0"};
+  const SONNE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 18.4V21M3 12h2.6M18.4 12H21M5.1 5.1l1.85 1.85M17.05 17.05l1.85 1.85M18.9 5.1l-1.85 1.85M6.95 17.05 5.1 18.9"/></svg>';
+  const MOND='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  let manuell=false; // sobald der Nutzer selbst umschaltet, folgen wir dem System nicht mehr
+
+  function anwenden(theme){
+    root.dataset.theme=theme;
+    if(meta) meta.setAttribute("content", FARBE[theme]);
+    // Icon zeigt die AKTUELLE Ansicht: Sonne = Tag, Mond = Nacht
+    btn.innerHTML = theme==="light" ? SONNE : MOND;
+    btn.setAttribute("aria-label", theme==="light" ? "Zur Nacht-Ansicht wechseln" : "Zur Tag-Ansicht wechseln");
+  }
+  anwenden(root.dataset.theme || "dark");
+
+  btn.addEventListener("click", ()=>{
+    manuell=true;
+    anwenden(root.dataset.theme==="light" ? "dark" : "light");
+  });
+  // Wechselt das Gerät tagsüber Hell/Dunkel, ziehen wir mit – außer der Nutzer hat manuell umgestellt
+  if(mq){
+    const folge=e=>{ if(!manuell) anwenden(e.matches ? "light" : "dark"); };
+    mq.addEventListener ? mq.addEventListener("change",folge) : mq.addListener(folge);
+  }
+})();
+</script>
+</body>
+</html>

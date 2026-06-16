@@ -1,0 +1,9 @@
+{
+  "liveServer.settings.donotShowInfoMsg": true,
+  "files.eol": "\n",
+  "editor.wordWrap": "on",
+  "html.format.wrapLineLength": 0,
+  "[html]": {
+    "editor.formatOnSave": false
+  }
+}
