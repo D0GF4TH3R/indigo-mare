@@ -520,8 +520,9 @@ function cardHTML(d){
 function render(){
   const q=searchEl.value.trim().toLowerCase();
   const treffer=DATEN.filter(d=>{
-    const katOk=d.kategorie===aktiv;
     const txtOk=!q||(d.name+" "+(d.info||"")+" "+d.text+" "+(d.tip||"")+" "+d.kategorie+" "+(d.gruppe||"")).toLowerCase().includes(q);
+    // Bei aktiver Suche über ALLE Kategorien suchen, sonst nur aktiven Tab zeigen
+    const katOk = q ? true : (d.kategorie===aktiv);
     return katOk&&txtOk;
   });
   countEl.textContent=treffer.length===0?"":treffer.length+(treffer.length===1?" Eintrag":" Einträge");
