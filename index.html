@@ -603,9 +603,14 @@ const tabsEl=document.getElementById("tabs"), listEl=document.getElementById("li
       countEl=document.getElementById("count"), searchEl=document.getElementById("search");
 
 function scrollZurListe(){
-  // Beim Tab-Wechsel einfach ganz nach oben (inkl. Hero) – simpel & zuverlässig
-  window.scrollTo(0, 0);                          // sofort
-  requestAnimationFrame(()=>window.scrollTo(0, 0)); // nach Neu-Aufbau noch einmal (sicher auf Mobile)
+  // 1) zuverlässig ganz nach oben (dieser Teil greift immer)
+  window.scrollTo(0, 0);
+  // 2) im nächsten Frame eine Spur runter, damit die Hero gerade verschwindet.
+  //    Klappt das mal nicht, bleibt es beim sauberen "ganz oben" (kein Hängenbleiben).
+  requestAnimationFrame(()=>{
+    const ctrl=document.querySelector(".controls");
+    if(ctrl) window.scrollTo(0, ctrl.offsetTop);
+  });
 }
 
 KATEGORIEN.forEach(k=>{
